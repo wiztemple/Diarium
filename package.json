@@ -1,0 +1,19 @@
+{
+  "name": "diarium",
+  "version": "1.0.0",
+  "description": "Diarium is an online journal where users can pen down their thoughts and feelings.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wiztemple/Diarium.git"
+  },
+  "author": "Ukaegbu Sullivan Wisdom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wiztemple/Diarium/issues"
+  },
+  "homepage": "https://github.com/wiztemple/Diarium#readme"
+}
