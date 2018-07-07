@@ -671,6 +671,9 @@ margin-left: auto;
         color: #777;
         text-justify: newspaper;
     }
+    .bg-grey{
+      background-color: #f4f4f4;
+    }
     .black{
         color:#222;
         font-weight: 100;
@@ -725,3 +728,9 @@ margin-left: auto;
         line-height:2;
         font-weight: 100;  
     } 
+    /*entry-content*/
+    .entry-content {
+      background-color: #fff;
+      padding: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
