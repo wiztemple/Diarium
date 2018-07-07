@@ -532,6 +532,10 @@ margin-left: auto;
       border-radius: .25rem;
       transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
+    .form-control:focus {
+        border:1px solid dodgerblue;
+        outline: none;
+      }
     label {
       display: inline-block;
       margin-bottom: .5rem;
