@@ -515,9 +515,9 @@ margin-left: auto;
       background: #fff;
       color: #222;
       padding: .375rem .75rem;;
-      /* border-top:4px solid dodgerblue; */
+      border-top:4px solid dodgerblue;
       border-top-right-radius: 5px;
-      box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+      /* box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4); */
     }
     .form-control {
       display: block;
