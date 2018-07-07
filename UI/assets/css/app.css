@@ -448,6 +448,16 @@ margin-left: auto;
     .banner{
       height: 250px;
     }
+    .modal-content{
+      background-color: #fafafa;
+      margin: 10% auto;
+      padding: 20px;
+      width: 95% !important;
+      box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),
+      0 7px 20px 0 rgba(0,0,0,0.17);
+      animation-name: modalopen;
+      animation-duration: 1s;
+     }
     /* .form-card{
       width: 80%;
     } */
@@ -705,6 +715,12 @@ margin-left: auto;
     .app-color{
         color: #fcce3f !important;
     }
+    .float-left{
+      float: left;
+    }
+    .float-right{
+      float:right;
+    }
     .flex{
         height: 100% !important;
         display: flex;
@@ -734,3 +750,40 @@ margin-left: auto;
       padding: 10px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     }
+/*modal*/
+.modal{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left:0;
+  top:0;
+  height:100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+.modal-content{
+ background-color: #fafafa;
+ margin: 10% auto;
+ padding: 20px;
+ width: 30%;
+ box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),
+ 0 7px 20px 0 rgba(0,0,0,0.17);
+ animation-name: modalopen;
+ animation-duration: 1s;
+}
+.closeBtn{
+  color:#ccc;
+  float:right;
+  font-size: 30px;
+}
+.closeBtn:hover, .closeBtn:focus{
+  color:#000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes modalopen{
+  from{opacity: 0;}
+  to {opacity: 1;}
+}

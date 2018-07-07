@@ -113,6 +113,11 @@
                    <div class="row">
                        <div class="column">
                            <h2 class="lightblue">Recent Entries</h2>
+                           <div class="float-right py-1">
+                               <button type="button" class="btn account__btn" id="modalBtn">
+                                   Create Entry <i class="fa fa-plus"></i>
+                               </button>
+                           </div>
                            <div class="row">
                                <div class="column">
                                    <div class="card">
@@ -324,7 +329,37 @@
       </div><!--end navbar-->
       </div>
     </section>
+    <section>
+        <div id="simpleModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="closeBtn">&times;</span>
+                    <h2>Create Entry</h2>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                        <label for="name">Title</label>
+                        <input type="text" class="form-control" placeholder="Enrty title">
+                        </div>
+                        <div class="form-row">
+                            <label for="name">Body</label>
+                            <input type="text" class="form-control" placeholder="Description">
+                        </div>
+                        <div class="form-row">
+                            <label for="name">Date:</label>
+                            <input type="date" class="form-control" placeholder="Date">
+                        </div>
+                    </form>
+                </div><!--end modal body-->
+                <div class="modal-footer">
+                <button class="btn account__btn"><i class="fa fa-plus"></i> Add</button>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 <script src="./assets/js/toggle.js"></script>
+<script src="./assets/js/main.js"></script>
 </body>
 </html>
