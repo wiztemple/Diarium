@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/wiztemple/Diarium#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
     "pg": "^7.4.3",
     "volleyball": "^1.5.1"
   },

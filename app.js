@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'volleyball';
-import dotenv from  'dotenv';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -15,13 +15,12 @@ app.use(logger);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (request, response) => {
-    return response.status(200).json({
-        status: 'success',
-        message: 'Welcome To Diarium... Your emotions matter, Write it down!'
-    })
-})
+app.get('/', (request, response) => response.status(200).json({
+  status: 'success',
+  message: 'Welcome To Diarium... Your emotions matter, Write it down!',
+}));
 app.listen(port, () => {
-    console.log(`Diarium listening on port ${port}`)
-})
+  // eslint-disable-next-line
+  console.log(`Diarium listening on port ${port}`);
+});
 export default app;
