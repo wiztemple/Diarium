@@ -5,10 +5,10 @@ import db from '../dbconnection/dbconnect';
 export default class AuthController {
   static async signup(request, response) {
     const {
-      username, lastname, firstname, email, password,
+      lastname, firstname, email, password,
     } = request.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
-    const insertQuery = `INSERT INTO users (username, lastname,firstname, email, hashedPassword), VALUES('${username}','${lastname}' ,'${firstname}', '${email}','${hashedPassword}') RETURNING *`;
+    const insertQuery = `INSERT INTO users (lastname,firstname, email, hashedPassword), VALUES ('${lastname}' ,'${firstname}', '${email}','${hashedPassword}') RETURNING * `;
     try {
       const result = await db.query(insertQuery);
       const token = jwt.sign(
@@ -28,7 +28,7 @@ export default class AuthController {
     } catch (error) {
       return response.status(500).json({
         status: 'error',
-        message: error.message,
+        message: error.stack,
       });
     }
   }

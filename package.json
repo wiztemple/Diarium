@@ -4,8 +4,10 @@
   "description": "Diarium is an online journal where users can pen down their thoughts and feelings.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --init --fix"
+    "test": "nyc mocha --require babel-register --timeout 6000 server/tests/*.js --exit",
+    "lint": "eslint --init --fix",
+    "dev": "nodemon --exec babel-node --presets babel-preset-env ./app.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
