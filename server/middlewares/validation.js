@@ -46,7 +46,7 @@ export default class Validate {
 
   static checkEmail(request, response, next) {
     const { email } = request.body;
-    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const regex = /[^\s]*@[a-z0-9.-]*/i;
     if (!regex.test(email)) {
       return response.status(400).json({
         status: 'fail',
