@@ -303,6 +303,7 @@ a{
     background-color: #0541fb;
     padding: 10px;
     color: #fff;
+    height: 60px;
     box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);
     z-index: 1070;
 }
@@ -310,7 +311,7 @@ a{
     display: flex;
 }
 .navbar__nav{
-    padding-right: 8px;
+    padding-right: 10px;
 }
 .nav__underline{
     padding-top: 7px;
@@ -329,9 +330,10 @@ margin-left: auto;
     color: #fff;
 }
 .nav__logo{
+   padding: 1px;
     font-family: 'Lobster Two', cursive !important;
     box-sizing: border-box !important;
-    font-size: 20px !important;
+    font-size: 32px !important;
     color:#fff !important;
 }
 .nav__link{
