@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'volleyball';
@@ -15,6 +16,9 @@ app.use(logger);
 // App body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Static files
+app.use('/', express.static(path.resolve(__dirname, './client/')));
 
 // Routes
 app.get('/', (request, response) => response.status(200).json({
