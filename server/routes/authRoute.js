@@ -7,9 +7,9 @@ const authRoute = Router();
 // sign up
 authRoute.post('/signup', Validation.validateUserInputs, Validation.checkEmail, AuthController.signup);
 // Login
-authRoute.post('/login', Validation.checkEmail, AuthController.login);
+authRoute.post('/login', AuthController.login);
 
 // get all users
-authRoute.get('/users', AuthController.getAllUsers);
+authRoute.get('/', AuthController.getAllUsers);
 
 export default authRoute;

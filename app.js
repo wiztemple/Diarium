@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import logger from 'volleyball';
 import dotenv from 'dotenv';
 import authRoute from './server/routes/authRoute';
+import entryRoute from './server/routes/entryRoute';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.get('/', (request, response) => response.status(200).json({
   message: 'Welcome To Diarium... Your emotions matter, Write it down!',
 }));
 app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/entries', entryRoute);
 
 app.listen(port, () => {
   // eslint-disable-next-line

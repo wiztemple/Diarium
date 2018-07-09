@@ -8,9 +8,8 @@ export default class AuthController {
       lastname, firstname, email, password,
     } = request.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
-    const userQuery = `SELECT * FROM users WHERE email = '${email}'`;
-    const insertQuery = `INSERT INTO users (lastname,firstname, email, password) VALUES ('${lastname}' ,'${firstname}', '${email}','${hashedPassword}') RETURNING * `;
     try {
+      const userQuery = `SELECT * FROM users WHERE email = '${email}'`;
       const checkIfUserExists = await db.query(userQuery);
       if (checkIfUserExists.rowCount > 0) {
         return response.status(409).json({
@@ -18,6 +17,7 @@ export default class AuthController {
           message: 'sorry user already exists',
         });
       }
+      const insertQuery = `INSERT INTO users (lastname,firstname, email, password) VALUES ('${lastname}' ,'${firstname}', '${email}','${hashedPassword}') RETURNING * `;
       const result = await db.query(insertQuery);
       const token = jwt.sign(
         { id: result.rows[0].id },
