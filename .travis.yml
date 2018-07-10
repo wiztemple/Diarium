@@ -4,7 +4,7 @@ services:
   - postgresql
 env:
   global:
-    - CC_TEST_REPORTER_ID=8fa8fe4660513837d60514556564d5999efc9191b875fa1db221870e0c8133a3
+    - CC_TEST_REPORTER_ID=0d32a226e2fbf7655a9f31be4b9f877660536e52eae163907bd447f573fc1028
 before_script:
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
   - psql -c 'CREATE TABLE users (id serial PRIMARY KEY, firstname varchar(100) not null, lastname varchar(100) not null, email varchar(100) not null, password varchar(250) not null);' -U postgres -d travis_ci_test
