@@ -23,14 +23,40 @@ People have thoughts, people feel things, ideas come and disappear; people need 
 
 ## Features
 
+## Installation
+1. Install [**Node JS**](https:
+4. [**cd**] into the root of the **project directory**.
+5. Run `npm install` on the terminal to install Dependecies
+6. Create Postgresql database, Navigate to server directory and run migrations:
+```
+cd server
+npm run migrations 
+npm run seeders
+```
+7. Create a `.env` file in the root directory of the application. Use a different database for your testing and development. Example of the content of a .env file is shown in the .env.sample
+
+8. Start the application:
+**_Different Build Environment_**
+
+**Production**
+```
+npm start
+```
+**Development**
+```
+npm run dev
+```
 ## Tests
 ``` npm test ```
 
-## Author
-* [Ukaegbu Sullivan Wisdom](http://github.com/wiztemple)
+## How to use?
+
+## Contribute
 
 ## Acknowledgments
-
 * [Andela](http://andela.com)
 * [Stackoverflow](stackoverflow.com)
 * [Medium](https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3)
+
+## License
+MIT @[Ukaegbu Sullivan Wisdom](http://github.com/wiztemple)
