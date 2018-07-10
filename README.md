@@ -24,7 +24,7 @@ People have thoughts, people feel things, ideas come and disappear; people need 
 ## Features
 
 ## Installation
-1. Install [**Node JS**](https:
+1. Install [**Node JS**](https://nodejs.org/en/)
 4. [**cd**] into the root of the **project directory**.
 5. Run `npm install` on the terminal to install Dependecies
 6. Create Postgresql database, Navigate to server directory and run migrations:
