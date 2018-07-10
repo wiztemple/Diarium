@@ -1,7 +1,7 @@
 # Diarium
 Diarium is an online journal where users can pen down their thoughts and feelings.
 # Motivation
-People have thoughts, people feel things, ideas come and disappear; people need need an online diary where there feelings and ideas can be jotted down. More features will be added to **Diarium** with time.
+:ledger: People have thoughts, people feel things, ideas come and disappear; people need need an online diary where there feelings and ideas can be jotted down. More features will be added to **Diarium** with time. :man: :woman: :boy: :girl: :smile:
 ## Build Status
 [![Build Status](https://travis-ci.org/wiztemple/Diarium.svg?branch=develop)](https://travis-ci.org/wiztemple/Diarium)
 [![Coverage Status](https://coveralls.io/repos/github/wiztemple/Diarium/badge.svg?branch=develop)](https://coveralls.io/github/wiztemple/Diarium?branch=develop)
@@ -25,7 +25,7 @@ People have thoughts, people feel things, ideas come and disappear; people need 
 
 ## Installation
 1. Install [**Node JS**](https://nodejs.org/en/)
-4. [**cd**] into the root of the **project directory**.
+4. **cd** into the root of the **project directory**.
 5. Run `npm install` on the terminal to install Dependecies
 6. Create Postgresql database, Navigate to server directory and run migrations:
 ```
