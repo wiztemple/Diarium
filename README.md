@@ -11,24 +11,26 @@ People have thoughts, people feel things, ideas come and disappear; people need 
 ## Style Guide
 [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript/).
 ### App UI
- [Diarium](https://wiztemple.github.io/Diarium/UI)
+[Diarium](https://wiztemple.github.io/Diarium/UI)
 
- ### Screenshots(User Interface Template)
-
+### Screenshots(User Interface Template)
 ![alt](./screenshots/landing.png)
 
 ## Technologies Used
-[Nodejs](https://nodejs.org/en/)
-[Expressjs](https://expressjs.com/)
-[node-postgres](https://node-postgres.com)
+* [Nodejs](https://nodejs.org/en/)
+* [Expressjs](https://expressjs.com/)
+* [node-postgres](https://node-postgres.com)
 
 ## Features
 
+## Tests
+``` npm test ```
+
 ## Author
-[Ukaegbu Sullivan Wisdom](http://github.com/wiztemple)
+* [Ukaegbu Sullivan Wisdom](http://github.com/wiztemple)
 
 ## Acknowledgments
 
-- [Andela](http://andela.com)
-- [Stackoverflow](stackoverflow.com)
-- [Medium](https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3)
+* [Andela](http://andela.com)
+* [Stackoverflow](stackoverflow.com)
+* [Medium](https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3)
