@@ -10,6 +10,6 @@ authRoute.post('/signup', Validation.validateUserInputs, Validation.checkEmail, 
 authRoute.post('/login', AuthController.login);
 
 // get all users
-authRoute.get('/', AuthController.getAllUsers);
+authRoute.get('/users', AuthController.getAllUsers);
 
 export default authRoute;

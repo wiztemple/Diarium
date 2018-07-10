@@ -4,14 +4,14 @@ import app from '../../../app';
 
 chai.use(chaiHttp);
 chai.should();
-
+const email = Math.random().toString(36).substring(2, 15);
 describe('Authentication', () => {
   describe('Create user account', () => {
     it('should create user account with valid inputs', (done) => {
       const user = {
         firstname: 'Sullivan',
         lastname: 'Wisdom',
-        email: 'wiztemple9@gmail.com',
+        email: `${email}@gmail.com`,
         password: 'lastdays00777',
       };
       chai.request(app)
@@ -138,7 +138,7 @@ describe('Authentication', () => {
     it('should login a registered user', (done) => {
       const user = {
         email: 'wiztemple9@gmail.com',
-        password: 'last5555',
+        password: 'lastdays00777',
       };
       chai.request(app)
         .post('/api/v1/auth/login')
@@ -146,6 +146,34 @@ describe('Authentication', () => {
         .end((error, response) => {
           response.should.have.status(200);
           response.body.should.have.property('message').to.equal('successfully signed in');
+          done();
+        });
+    });
+    it('should not login a user with incorrect password', (done) => {
+      const user = {
+        email: 'wiztemple9@gmail.com',
+        password: 'lastdays00',
+      };
+      chai.request(app)
+        .post('/api/v1/auth/login')
+        .send(user)
+        .end((error, response) => {
+          response.should.have.status(404);
+          response.body.should.have.property('message').to.equal('password or email is incorrect');
+          done();
+        });
+    });
+    it('should not login a user with incorrect email address', (done) => {
+      const user = {
+        email: 'wiz@gmail.com',
+        password: 'lastdays0077',
+      };
+      chai.request(app)
+        .post('/api/v1/auth/login')
+        .send(user)
+        .end((error, response) => {
+          response.should.have.status(404);
+          response.body.should.have.property('message').to.equal('password or email is incorrect');
           done();
         });
     });
