@@ -8,7 +8,7 @@ env:
 before_script:
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
   - psql -c 'CREATE TABLE users (id serial PRIMARY KEY, firstname varchar(100) not null, lastname varchar(100) not null, email varchar(100) not null, password varchar(250) not null);' -U postgres -d travis_ci_test
-  - psql -c "INSERT INTO users (firstname, lastname, email, password) VALUES ('Chinyere', 'Ukaegbu', 'obi@gmail.com' ,'$2a$08$Ok/xN7VyRkAK1sAyzJA7v.hs7YpKQomOibEwNmclyDJe8M1tL5s66');" -U postgres -d travis_ci_test
+  - psql -c "INSERT INTO users (firstname, lastname, email, password) VALUES ('Chinyere', 'Ukaegbu', 'obi@gmail.com' ,'lastdays');" -U postgres -d travis_ci_test
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
