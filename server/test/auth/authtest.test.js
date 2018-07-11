@@ -137,8 +137,8 @@ describe('Authentication', () => {
     });
     it('should login a registered user', (done) => {
       const user = {
-        email: 'wiztemple9@gmail.com',
-        password: 'lastdays00777',
+        email: 'obi@gmail.com',
+        password: 'lastdays',
       };
       chai.request(app)
         .post('/api/v1/auth/login')
@@ -151,7 +151,7 @@ describe('Authentication', () => {
     });
     it('should not login a user with incorrect password', (done) => {
       const user = {
-        email: 'wiztemple9@gmail.com',
+        email: 'obi@gmail.com',
         password: 'lastdays00',
       };
       chai.request(app)
