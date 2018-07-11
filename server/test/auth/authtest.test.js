@@ -9,7 +9,7 @@ describe('Authentication', () => {
   describe('Create user account', () => {
     it('should create user account with valid inputs', (done) => {
       const user = {
-        firstname: 'Chinyere',
+        firstname: 'Edwin',
         lastname: 'Ukaegbu',
         email: `${email}@gmail.com`,
         password: 'lastdays',
@@ -163,20 +163,6 @@ describe('Authentication', () => {
           done();
         });
     });
-    // it('should not login a user with incorrect email address', (done) => {
-    //   const user = {
-    //     email: 'wiz@gmailcom',
-    //     password: 'lastdays0077',
-    //   };
-    //   chai.request(app)
-    //     .post('/api/v1/auth/login')
-    //     .send(user)
-    //     .end((error, response) => {
-    //       response.should.have.status(404);
-    //       response.body.should.have.property('message').to.equal('password or email is incorrect');
-    //       done();
-    //     });
-    // });
     it('should return all registered users', (done) => {
       chai.request(app)
         .get('/api/v1/auth/users')
