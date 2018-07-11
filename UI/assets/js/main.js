@@ -1,6 +1,6 @@
 let i = 0;
-const time = 3000;
-const images  = ['/UI/assets/images/feelings.jpg','/UI/assets/images/jog_drib_2.png','/UI/assets/images/notes.jpg','/UI/assets/images/assets.png','/UI/assets/images/pen-mascot-01.jpg',];
+const time = 2000;
+const images  = ['../images/feelings.jpg','../images/jog_drib_2.png','../images/notes.jpg','../images/assets.png','../images/pen-mascot-01.jpg',];
 
 
 const changeImage = () => {
