@@ -87,4 +87,33 @@ export default class AuthController {
       });
     }
   }
+
+  /**
+   * @static method to get a single user
+   * @param {Object} request  request object
+   * @param {Object} response response object
+   */
+  static async getUserDetails(request, response) {
+    const { userId } = request.params;
+    const query = `SELECT * FROM users WHERE id = ${userId}`;
+    try {
+      const data = await db.query(query);
+      if (data.rowCount === 0) {
+        return response.status(404).json({
+          status: 'fail',
+          message: 'user not found',
+        });
+      }
+      return response.status(200).json({
+        status: 'success',
+        message: 'user details successfully returned',
+        user: data.rows[0],
+      });
+    } catch (error) {
+      return response.status(500).json({
+        status: 'error',
+        message: error.message,
+      });
+    }
+  }
 }

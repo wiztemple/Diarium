@@ -119,7 +119,7 @@ describe('Authentication', () => {
           done();
         });
     });
-    it('should not create account with wrong email', (done) => {
+    it('should not create account with incorrect email', (done) => {
       const user = {
         firstname: 'wireddd',
         lastname: 'Wisdom',

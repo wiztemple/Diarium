@@ -11,5 +11,7 @@ authRoute.post('/login', AuthController.login);
 
 // get all users
 authRoute.get('/users', AuthController.getAllUsers);
+// get single user details
+authRoute.get('/users/:userId', AuthController.getUserDetails);
 
 export default authRoute;
