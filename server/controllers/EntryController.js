@@ -1,7 +1,7 @@
 import db from '../dbconnection/dbconnect';
 
 export default class EntryController {
-  /**
+  /*
    * @static method to get all entries
    * @param {object} request - request object
    * @param {object} response -response object
@@ -9,18 +9,25 @@ export default class EntryController {
   static async getAllEntries(request, response) {
     const { userId } = request.body;
     const query = `SELECT * FROM entries WHERE user_id = ${userId}) ORDER BY id ASC`;
-    const { error, data } = await db.query(query);
-    if (error) {
-      return response.status(404).json({
-        status: 'fail',
-        message: 'no entry was found',
+    try {
+      const data = await db.query(query);
+      if (!data) {
+        return response.status(404).json({
+          status: 'fail',
+          message: 'no entry was found',
+        });
+      }
+      return response.status(200).json({
+        status: 'success',
+        message: 'all entries successfully returned',
+        entries: data.rows,
+      });
+    } catch (error) {
+      return response.status(500).json({
+        status: 'error',
+        message: error.message,
       });
     }
-    return response.status(200).json({
-      status: 'success',
-      message: 'all entries successfully returned',
-      entries: data.rows,
-    });
   }
 
   /**
@@ -29,20 +36,28 @@ export default class EntryController {
    * @param {object} response response object
    */
   static async getSingleEntry(request, response) {
+    const { userId } = request.body;
     const { entryId } = request.params;
     const query = `SELECT * FROM entries WHERE id = ${entryId} AND user_id = ${userId}`;
-    const { error, data } = await db.query(query);
-    if (error) {
-      return response.status(404).json({
+    try {
+      const data = await db.query(query);
+      if (!data) {
+        return response.status(404).json({
+          status: 'fail',
+          message: 'entry not found',
+        });
+      }
+      return response.status(200).json({
+        status: 'success',
+        message: 'entry successfully returned',
+        entry: data.rows[0].entry,
+      });
+    } catch (error) {
+      return response.status(500).json({
         status: 'fail',
-        message: 'entry not found',
+        message: error.message,
       });
     }
-    return response.status(200).json({
-      status: 'success',
-      message: 'entry successfully returned',
-      entry: data.rows[0].entry,
-    });
   }
 
   /**
@@ -53,28 +68,44 @@ export default class EntryController {
    */
   static async createEntry(request, response) {
     const {
-      title, imageUrl, entryNote, userId, createdAt,
+      title, imageUrl, entryNote,
     } = request.body;
-    const insertQuery = `INSERT INTO entries (title, imageUrl, entry_note, user_id, createdAt) VALUES ('${title}' ,'${imageUrl}', '${entryNote}', '${userId}','${createdAt}') RETURNING * `;
-    const { error, data } = await db.query(insertQuery);
-    if (error) {
-      return response.status(403).json({
+    try {
+      const entryQuery = `SELECT * FROM entrie WHERE id = '${entryId}'`;
+      const checkIfEntryExists = await db.query(entryQuery);
+      if (checkIfEntryExists.rowCount > 0) {
+        return response.status(409).json({
+          status: 'fail',
+          message: 'sorry entry already exists',
+        });
+      }
+      const insertQuery = `INSERT INTO entries (title, imageUrl, entry_note) VALUES ('${title}' ,'${imageUrl}', '${entryNote}',) RETURNING * `;
+      const newEntry = await db.query(insertQuery);
+      if (!newEntry) {
+        return response.status(403).json({
+          status: 'fail',
+          message: 'entry was not created',
+        });
+      }
+      return response.status(201).json({
+        status: 'success',
+        message: 'entry successfully created',
+        entry: {
+          id: newEntry.rows[0].id,
+          userId: newEntry.rows[0].userId,
+          title: newEntry.rows[0].title,
+          imageUrl: newEntry.rows[0].imageUrl,
+          entryNote: newEntry.rows[0].entryNote,
+          createdAt: newEntry.rows[0].createdAt,
+        },
+      });
+    } catch (error) {
+      response.status(500).json({
         status: 'fail',
         message: error.message,
       });
     }
-    return response.status(201).json({
-      status: 'success',
-      message: 'entry successfully created',
-      entry: {
-        id: data.rows[0].id,
-        userId: data.rows[0].userId,
-        title: data.rows[0].title,
-        imageUrl: data.rows[0].imageUrl,
-        entryNote: data.rows[0].entryNote,
-        createdAt: data.rows[0].createdAt,
-      },
-    });
+    return null;
   }
 
   /**
@@ -86,29 +117,36 @@ export default class EntryController {
   static async updateEntry(request, response) {
     const { entryId } = request.params;
     const query = `SELECT * FROM entries WHERE id = ${entryId} AND user_id = ${userId}`;
-    const result = await db.query(query);
-    if (result.rowCount === 0) {
-      return response.status(404).json({
-        status: 'fail',
-        message: 'no such entry was found',
+    try {
+      const result = await db.query(query);
+      if (result.rowCount === 0) {
+        return response.status(404).json({
+          status: 'fail',
+          message: 'no such entry was found',
+        });
+      }
+      const {
+        title, imageUrl, entryNote, updatedAt,
+      } = request.body;
+      const updateQuery = `UPDATE entries SET title = ${title}, image = ${imageUrl}, entry_note = ${entryNote}, updated_at = ${updatedAt} WHERE entry_id = ${entryId} AND user_id = ${userId}`;
+      const updatedEntry = await db.query(updateQuery);
+      if (!updatedEntry) {
+        return response.status(403).json({
+          status: 'fail',
+          message: 'entry was not updated',
+        });
+      }
+      return response.status(200).json({
+        status: 'success',
+        message: 'entry successfully updated',
+        data: updatedEntry.rows[0],
       });
-    }
-    const {
-      title, imageUrl, entryNote, updatedAt,
-    } = request.body;
-    const updateQuery = `UPDATE entries SET title = ${title}, image = ${imageUrl}, entry_note = ${entryNote}, updated_at = ${updatedAt} WHERE entry_id = ${entryId} AND user_id = ${userId}`;
-    const { error, updatedEntry } = await db.query(updateQuery);
-    if (error) {
-      return response.status(404).json({
-        status: 'fail',
+    } catch (error) {
+      return response.status(500).json({
+        status: 'error',
         message: error.message,
       });
     }
-    return response.status(200).json({
-      status: 'success',
-      message: 'entry successfully updated',
-      data: updatedEntry.rows[0],
-    });
   }
 
   static async deleteEntry(request, response) {

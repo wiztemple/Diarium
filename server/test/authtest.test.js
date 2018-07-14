@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../../../app';
+import app from '../../app';
 
 chai.use(chaiHttp);
 chai.should();
@@ -135,6 +135,9 @@ describe('Authentication', () => {
           done();
         });
     });
+  });
+  // user login
+  describe('User Login', () => {
     it('should login a registered user', (done) => {
       const user = {
         email: 'obi@gmail.com',
@@ -163,6 +166,9 @@ describe('Authentication', () => {
           done();
         });
     });
+  });
+  // Get user details
+  describe('User Details', () => {
     it('should return all registered users', (done) => {
       chai.request(app)
         .get('/api/v1/auth/users')
