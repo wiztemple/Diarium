@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Dashboard Diarium</title>
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="./assets/css/app.css">
+</head>
+<body class="bg-grey">
+<div class="app">
+    <div class="header">
+      <div class="navbar fixed-top">
+        <div class="shelter">
+            <div class="navbar__nav nav__logo nav__underline">
+                Diarium
+            </div>
+            <div class="navbar__nav navbar__nav-toggle">
+                <i class="fa fa-bars"></i>
+            </div>
+            <nav class="nav__items">
+                <div class="navbar__nav nav__underline">
+                    <a href="dashboard.html" class="nav__link active">
+                        <span><i class="pr-1 fa fa-dashboard"> </i></span> Dashboard
+                    </a>
+                </div>
+                <div class="navbar__nav nav__underline">
+                    <a href="profile.html" class="nav__link">
+                        <span><i class="pr-1 fa fa-user-circle-o"> </i></span> Profile
+                    </a>
+                </div>
+                <div class="navbar__nav nav__underline">
+                    <a href="#" class="nav__link">
+                        <span><i class="pr-1 fa fa-cogs"> </i></span> Settings
+                    </a>
+                </div>
+                <div class="navbar__nav nav__underline">
+                    <a href="#" class="nav__link">
+                        <span><i class="pr-1 fa fa-envelope-o"> </i></span> Notifications
+                    </a>
+                </div>
+            </nav>
+            <nav class="nav__items nav__items-right">
+                <div class="navbar__nav">
+                    <a href="signup.html">
+                        <button class="btn account__btn"><i class="fa fa-power-off"></i></button>
+                    </a>
+                </div>
+            </nav>
+        </div><!--end container-->
+      </div><!--end navbar-->
+    </div>
+   <section>
+       <div class="shelter">
+           <div class="dashboard__card mt-5">
+               <div class="orders">
+                   <div class="row">
+                        <div class="column">
+                            <div class="card">
+                                <div class="card__row">
+                                    <div>
+                                        <span><i class="wechat fa-3x fa fa-user-circle-o"></i></span>
+                                    </div>
+                                    <div>
+                                        <div class="card__title">Today's Entry</div>
+                                        <div class="card__body">2</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="card">
+                                <div class="card__row">
+                                    <div>
+                                        <span><i class="dodgerblue fa-3x fa fa-list"></i></span>
+                                    </div>
+                                    <div>
+                                        <div class="card__title dodgerblue">Deleted Entries</div>
+                                        <div class="card__body">450</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="column">
+                            <div class="card">
+                                <div class="card__row">
+                                    <div>
+                                        <span><i class="dodgerblue fa-3x fa fa-book"></i></span>
+                                    </div>
+                                    <div>
+                                        <div class="card__title dodgerblue">Archived Entries</div>
+                                        <div class="card__body">450</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="column">
+                            <div class="card">
+                                <div class="card__row">
+                                    <div>
+                                        <span><i class="dodgerblue fa-3x fa fa-history"></i></span>
+                                    </div>
+                                    <div>
+                                        <div class="card__title dodgerblue">All Entries</div>
+                                        <div class="card__body">450</div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                   </div>
+                   <div class="row">
+                       <div class="column">
+                           <h2 class="lightblue">Recent Entries</h2>
+                           <div class="float-right py-1">
+                               <button type="button" class="btn account__btn" id="modalBtn">
+                                   Create Entry <i class="fa fa-plus"></i>
+                               </button>
+                           </div>
+                           <div class="row">
+                               <div class="column">
+                                   <div class="card">
+                                       <div class="justify-content-space-between">
+                                           <div>
+                                               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, soluta.
+                                               <div>
+                                                    <span>Date Created: 07-07-2018</span>
+                                                    <!-- <span>Track ID: 2389568655</span> -->
+                                               </div>
+                                           </div>
+                                           <div>
+                                                <button class="btn account__btn"><i class="fa fa-edit"></i> Edit</button>
+                                           </div>
+                                           <div>
+                                                <button class="btn account__btn">Delete <i class="fa fa-times"></i></button>
+                                           </div>
+                                            <div>
+                                                <button class="btn account__btn">Settings <i class="fa fa-cog"></i></button>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div><!--end row-->
+                           <div class="row">
+                            <div class="column">
+                                <div class="card">
+                                    <div class="justify-content-space-between">
+                                        <div>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, soluta.
+                                            <div>
+                                                 <span>Date Created: 07-07-2018</span>
+                                                 <!-- <span>Track ID: 2389568655</span> -->
+                                            </div>
+                                        </div>
+                                        <div>
+                                             <button class="btn account__btn"><i class="fa fa-edit"></i> Edit</button>
+                                        </div>
+                                        <div>
+                                             <button class="btn account__btn">Delete <i class="fa fa-times"></i></button>
+                                        </div>
+                                         <div>
+                                             <button class="btn account__btn">Settings <i class="fa fa-cog"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+                        <div class="row">
+                            <div class="column">
+                                <div class="card">
+                                    <div class="justify-content-space-between">
+                                        <div>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, soluta.
+                                            <div>
+                                                 <span>Date Created: 07-07-2018</span>
+                                                 <!-- <span>Track ID: 2389568655</span> -->
+                                            </div>
+                                        </div>
+                                        <div>
+                                             <button class="btn account__btn"><i class="fa fa-edit"></i> Edit</button>
+                                        </div>
+                                        <div>
+                                             <button class="btn account__btn">Delete <i class="fa fa-times"></i></button>
+                                        </div>
+                                         <div>
+                                             <button class="btn account__btn">Settings <i class="fa fa-cog"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+                        <div class="row">
+                            <div class="column">
+                                <div class="card">
+                                    <div class="justify-content-space-between">
+                                        <div>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, soluta.
+                                            <div>
+                                                 <span>Date Created: 07-07-2018</span>
+                                                 <!-- <span>Track ID: 2389568655</span> -->
+                                            </div>
+                                        </div>
+                                        <div>
+                                             <button class="btn account__btn"><i class="fa fa-edit"></i> Edit</button>
+                                        </div>
+                                        <div>
+                                             <button class="btn account__btn">Delete <i class="fa fa-times"></i></button>
+                                        </div>
+                                         <div>
+                                             <button class="btn account__btn">Settings <i class="fa fa-cog"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+                        <div class="row">
+                            <div class="column">
+                                <div class="card">
+                                    <div class="justify-content-space-between">
+                                        <div>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, soluta.
+                                            <div>
+                                                 <span>Date Created: 07-07-2018</span>
+                                                 <!-- <span>Track ID: 2389568655</span> -->
+                                            </div>
+                                        </div>
+                                        <div>
+                                             <button class="btn account__btn"><i class="fa fa-edit"></i> Edit</button>
+                                        </div>
+                                        <div>
+                                             <button class="btn account__btn">Delete <i class="fa fa-times"></i></button>
+                                        </div>
+                                         <div>
+                                             <button class="btn account__btn">Settings <i class="fa fa-cog"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+                        <div class="row">
+                            <div class="column">
+                                <div class="card">
+                                    <div class="justify-content-space-between">
+                                        <div>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, soluta.
+                                            <div>
+                                                 <span>Date Created: 07-07-2018</span>
+                                                 <!-- <span>Track ID: 2389568655</span> -->
+                                            </div>
+                                        </div>
+                                        <div>
+                                             <button class="btn account__btn"><i class="fa fa-edit"></i> Edit</button>
+                                        </div>
+                                        <div>
+                                             <button class="btn account__btn">Delete <i class="fa fa-times"></i></button>
+                                        </div>
+                                         <div>
+                                             <button class="btn account__btn">Settings <i class="fa fa-cog"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+      <div class="footer">
+        <div class="navbar fixed-bottom py-1 bg-white">
+        <div class="shelter">
+            <nav class="nav__items2">
+                <div class="navbar__nav">
+                    <div class="display">
+                      <a href="#" class="dodgerblue">
+                        Follow Us on:
+                      </a>
+                    </div>
+                </div>
+                <div class="navbar__nav">
+                    <a href="#">
+                        <div class="socials facebook">
+                            <i class="fa fa-facebook-official"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="navbar__nav">
+                    <a href="#" class="dodgerblue">
+                       <div class="socials">
+                         <i class="fa fa-twitter"></i>
+                       </div>
+                    </a>
+                </div>
+                 <div class="navbar__nav">
+                    <a href="#">
+                       <div class="socials instagram">
+                         <i class="fa fa-instagram"></i>
+                       </div>
+                    </a>
+                </div>
+                <div class="navbar__nav">
+                    <a href="#" class="green">
+                       <div class="socials">
+                         <i class="fa fa-whatsapp"></i>
+                       </div>
+                    </a>
+                </div>
+                 <div class="navbar__nav">
+                    <a href="#">
+                       <div class="socials wechat">
+                         <i class="fa fa-wechat"></i>
+                       </div>
+                    </a>
+                </div>
+            </nav>
+            <nav class="nav__items nav__items-right">
+                <div class="navbar__nav">
+                    <div class="display">
+                      <a href="#" class="dodgerblue">
+                        &copy; Sullivan Wisdom [Andela Cycle34 2018].
+                      </a>
+                    </div>
+                </div>
+            </nav>
+        </div><!--end shelter-->
+      </div><!--end navbar-->
+      </div>
+    </section>
+    <section>
+        <div id="simpleModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="closeBtn">&times;</span>
+                    <h2>Create Entry</h2>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                        <label for="name">Title</label>
+                        <input type="text" class="form-control" name="title" placeholder="Entry title">
+                        </div>
+                         <div class="form-row">
+                            <label for="name">image Url:</label>
+                            <input type="text" class="form-control" name="imageUrl" placeholder="image">
+                        </div>
+                        <div class="form-row">
+                            <label for="name">Body</label>
+                            <input type="text" class="form-control" name="entryNote" placeholder="Description">
+                        </div>
+                    </form>
+                </div><!--end modal body-->
+                <div class="modal-footer">
+                <button class="btn account__btn"><i class="fa fa-plus"></i> Add</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="./assets/js/toggle.js"></script>
+<script src="./assets/js/main.js"></script>
+</body>
+</html>

@@ -5,8 +5,9 @@ import db from '../dbconnection/dbconnect';
 export default class AuthController {
   static async signup(request, response) {
     const {
-      lastname, firstname, email, password,
+      firstname, lastname, email, password,
     } = request.body;
+    console.log(request.headers);
     const hashedPassword = bcrypt.hashSync(password, 10);
     try {
       const userQuery = `SELECT * FROM users WHERE email = '${email}'`;
@@ -17,7 +18,7 @@ export default class AuthController {
           message: 'sorry user already exists',
         });
       }
-      const insertQuery = `INSERT INTO users (lastname,firstname, email, password) VALUES ('${lastname}' ,'${firstname}', '${email}','${hashedPassword}') RETURNING * `;
+      const insertQuery = `INSERT INTO users (firstname, lastname, email, password) VALUES ('${firstname}' ,'${lastname}', '${email}','${hashedPassword}') RETURNING * `;
       const result = await db.query(insertQuery);
       const token = jwt.sign(
         { id: result.rows[0].id, email: result.rows[0].email },

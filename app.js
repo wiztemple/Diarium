@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import path from 'path';
 import logger from 'volleyball';
 import dotenv from 'dotenv';
 import authRoute from './server/routes/authRoute';
@@ -18,10 +19,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
-app.get('/', (request, response) => response.status(200).json({
-  status: 'success',
-  message: 'Welcome To Diarium... Your emotions matter, Write it down!',
-}));
+app.get('/', (request, response) => response.sendfile('./client/index.html'));
+
+// connect static files
+app.use(express.static(path.resolve(__dirname, './client/')));
+
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users/entries', entryRoute);
 

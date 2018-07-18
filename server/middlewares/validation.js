@@ -9,7 +9,7 @@ export default class Validate {
       !firstname || firstname === undefined || firstname.toString().trim() === '' || typeof firstname !== 'string'
     ) {
       return response.status(400).send({
-        valid: false,
+        status: 'fail',
         message: 'firstname is required',
       });
     }
