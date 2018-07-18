@@ -20,7 +20,7 @@ export default class AuthController {
       const insertQuery = `INSERT INTO users (lastname,firstname, email, password) VALUES ('${lastname}' ,'${firstname}', '${email}','${hashedPassword}') RETURNING * `;
       const result = await db.query(insertQuery);
       const token = jwt.sign(
-        { id: result.rows[0].id },
+        { id: result.rows[0].id, email: result.rows[0].email },
         process.env.JWT_SECRET,
         { expiresIn: 86400 },
       );
@@ -54,7 +54,7 @@ export default class AuthController {
         });
       }
       const token = jwt.sign(
-        { id: result.rows[0].id },
+        { id: result.rows[0].id, email: result.rows[0].email },
         process.env.JWT_SECRET,
         { expiresIn: 86400 },
       );

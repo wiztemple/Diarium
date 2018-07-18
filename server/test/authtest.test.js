@@ -55,7 +55,7 @@ describe('Authentication', () => {
           done();
         });
     });
-    it('should not create account with empty lasttname', (done) => {
+    it('should not create account with empty lastname', (done) => {
       const user = {
         firstname: 'wisdom',
         lastname: '',
@@ -131,7 +131,7 @@ describe('Authentication', () => {
         .send(user)
         .end((error, response) => {
           response.should.have.status(400);
-          response.body.should.have.property('message').to.equal('invalid request email');
+          response.body.should.have.property('message').to.equal('email is invalid');
           done();
         });
     });
@@ -171,7 +171,7 @@ describe('Authentication', () => {
   describe('User Details', () => {
     it('should return all registered users', (done) => {
       chai.request(app)
-        .get('/api/v1/auth/users')
+        .get('/api/v1/auth')
         .send()
         .end((error, response) => {
           response.should.have.status(200);

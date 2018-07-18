@@ -3,12 +3,20 @@ export default class Validate {
     const {
       firstname, lastname, email, password,
     } = request.body;
+    const nameFormat = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
+    const emailPattern = /[^\s]*@[a-z0-9.-]*/i;
     if (
       !firstname || firstname === undefined || firstname.toString().trim() === '' || typeof firstname !== 'string'
     ) {
       return response.status(400).send({
         valid: false,
         message: 'firstname is required',
+      });
+    }
+    if (nameFormat.test(firstname)) {
+      return response.status(400).json({
+        status: 'fail',
+        message: 'firstname cannot contain special character',
       });
     }
     if (
@@ -19,12 +27,24 @@ export default class Validate {
         message: 'lastname is required',
       });
     }
+    if (nameFormat.test(lastname)) {
+      return response.status(400).json({
+        status: 'fail',
+        message: 'lastname cannot contain special character',
+      });
+    }
     if (
       !email || email === undefined || email.toString().trim() === ''
     ) {
       return response.status(400).send({
         valid: false,
         message: 'email is required',
+      });
+    }
+    if (!emailPattern.test(email.trim())) {
+      return response.status(400).json({
+        status: 'fail',
+        message: 'email is invalid',
       });
     }
     if (
@@ -44,15 +64,43 @@ export default class Validate {
     return next();
   }
 
-  static checkEmail(request, response, next) {
-    const { email } = request.body;
-    const regex = /[^\s]*@[a-z0-9.-]*/i;
-    if (!regex.test(email)) {
+  static validEntryInput(request, response, next) {
+    const id = request.params;
+    console.log(id);
+    const {
+      title, imageUrl, entryNote,
+    } = request.body;
+    if (!id || id === undefined || id !== Number || id === 0) {
       return response.status(400).json({
         status: 'fail',
-        message: 'invalid request email',
+        message: 'invalid id',
       });
     }
+    if (
+      !title || title === undefined || title.trim() === '' || typeof title !== 'string'
+    ) {
+      return response.status(400).send({
+        status: 'fail',
+        message: 'entry title cannot be empty',
+      });
+    }
+    if (
+      typeof imageUrl !== 'string'
+    ) {
+      return response.status(400).send({
+        valid: false,
+        message: 'entry url can only be a string',
+      });
+    }
+    if (
+      !entryNote || entryNote === undefined || entryNote.toString().trim() === '' || typeof entryNote !== 'string'
+    ) {
+      return response.status(400).send({
+        valid: false,
+        message: 'entry note cannot be empty',
+      });
+    }
+
     return next();
   }
 }

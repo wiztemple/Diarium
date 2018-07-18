@@ -6,9 +6,10 @@ env:
   global:
     - CC_TEST_REPORTER_ID=0d32a226e2fbf7655a9f31be4b9f877660536e52eae163907bd447f573fc1028
 before_script:
-  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
-  - psql -c 'CREATE TABLE users (id serial PRIMARY KEY, firstname varchar(100) not null, lastname varchar(100) not null, email varchar(100) not null, password varchar(250) not null);' -U postgres -d travis_ci_test
-  - psql -c "INSERT INTO users (firstname, lastname, email, password) VALUES ('Chinyere', 'Ukaegbu', 'obi@gmail.com' ,'lastdays');" -U postgres -d travis_ci_test
+  - psql -c 'CREATE DATABASE travis_test;' -U postgres
+  - psql -c 'CREATE TABLE users (id serial PRIMARY KEY, firstname varchar(100) not null, lastname varchar(100) not null, email varchar(100) not null, password varchar(250) not null, created_at TIMESTAMP NOT NULL DEFAULT NOW(), updated_at TIMESTAMP NOT NULL DEFAULT NOW());' -U postgres -d travis_test
+  - psql -c "INSERT INTO users (firstname, lastname, email, password) VALUES ('Chinyere', 'Ukaegbu', 'obi@gmail.com' ,'lastdays');" -U postgres -d travis_test
+  - psql -c 'CREATE TABLE entries (id serial PRIMARY KEY, title varchar(100) not null, image_url varchar(1000) not null, entry_note TEXT not null, user_id integer REFERENCES users (id), created_at TIMESTAMP NOT NULL DEFAULT NOW(), updated_at TIMESTAMP NOT NULL DEFAULT NOW());' -U postgres -d travis_test
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build

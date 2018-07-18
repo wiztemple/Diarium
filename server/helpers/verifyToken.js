@@ -5,23 +5,18 @@ dotenv.config();
 
 const secret = process.env.JWT_SECRET;
 const verifyToken = (request, response, next) => {
-  const token = request.headers.token || request.body.token;
-  if (token) {
-    jwt.verify(token, secret, (error, decoded) => {
-      if (decoded === undefined) {
-        return response.status(401).json({
-          status: 'fail',
-          message: 'Access denied, login please',
-        });
-      }
-      request.userId = decoded.id;
-      return next();
+  try {
+    const token = request.headers.authorization.split(' ')[1];
+    const decoded = jwt.verify(token, secret);
+    request.userId = decoded;
+    next();
+  } catch (error) {
+    return response.status(400).json({
+      status: 'fail',
+      message: error.message,
     });
   }
-  return response.status(401).json({
-    status: 'fail',
-    message: 'please login with email or password',
-  });
+  return null;
 };
 
 export default verifyToken;

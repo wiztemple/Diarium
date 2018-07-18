@@ -5,13 +5,13 @@ import Validation from '../middlewares/validation';
 const authRoute = Router();
 
 // sign up
-authRoute.post('/signup', Validation.validateUserInputs, Validation.checkEmail, AuthController.signup);
+authRoute.post('/signup', Validation.validateUserInputs, AuthController.signup);
 // Login
 authRoute.post('/login', AuthController.login);
 
 // get all users
-authRoute.get('/users', AuthController.getAllUsers);
+authRoute.get('/', AuthController.getAllUsers);
 // get single user details
-authRoute.get('/users/:userId', AuthController.getUserDetails);
+authRoute.get('/:userId', AuthController.getUserDetails);
 
 export default authRoute;

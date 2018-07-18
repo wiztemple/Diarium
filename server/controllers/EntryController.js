@@ -1,17 +1,18 @@
 import db from '../dbconnection/dbconnect';
 
 export default class EntryController {
-  /*
+  /**
    * @static method to get all entries
-   * @param {object} request - request object
-   * @param {object} response -response object
+   * @param {Object} request - request object
+   * @param {Object} response - response object
+   * @return an object containing the created entry
    */
   static async getAllEntries(request, response) {
-    const { userId } = request.body;
-    const query = `SELECT * FROM entries WHERE user_id = ${userId}) ORDER BY id ASC`;
+    const userId = request.userId.id;
+    const query = `SELECT * FROM entries WHERE user_id = '${userId}' ORDER BY id ASC`;
     try {
-      const data = await db.query(query);
-      if (!data) {
+      const result = await db.query(query);
+      if (!result) {
         return response.status(404).json({
           status: 'fail',
           message: 'no entry was found',
@@ -20,7 +21,7 @@ export default class EntryController {
       return response.status(200).json({
         status: 'success',
         message: 'all entries successfully returned',
-        entries: data.rows,
+        entries: result.rows,
       });
     } catch (error) {
       return response.status(500).json({
@@ -36,7 +37,7 @@ export default class EntryController {
    * @param {object} response response object
    */
   static async getSingleEntry(request, response) {
-    const { userId } = request.body;
+    const userId = request.userId.id;
     const { entryId } = request.params;
     const query = `SELECT * FROM entries WHERE id = ${entryId} AND user_id = ${userId}`;
     try {
@@ -50,7 +51,7 @@ export default class EntryController {
       return response.status(200).json({
         status: 'success',
         message: 'entry successfully returned',
-        entry: data.rows[0].entry,
+        entry: data.rows[0],
       });
     } catch (error) {
       return response.status(500).json({
@@ -67,11 +68,12 @@ export default class EntryController {
    * @return an object containing the created entry
    */
   static async createEntry(request, response) {
+    const userId = request.userId.id;
     const {
       title, imageUrl, entryNote,
     } = request.body;
     try {
-      const entryQuery = `SELECT * FROM entrie WHERE id = '${entryId}'`;
+      const entryQuery = `SELECT * FROM entries WHERE title = '${title}'`;
       const checkIfEntryExists = await db.query(entryQuery);
       if (checkIfEntryExists.rowCount > 0) {
         return response.status(409).json({
@@ -79,7 +81,7 @@ export default class EntryController {
           message: 'sorry entry already exists',
         });
       }
-      const insertQuery = `INSERT INTO entries (title, imageUrl, entry_note) VALUES ('${title}' ,'${imageUrl}', '${entryNote}',) RETURNING * `;
+      const insertQuery = `INSERT INTO entries (user_id, title, image_url, entry_note) VALUES ('${userId}','${title}','${imageUrl}','${entryNote}') RETURNING * `;
       const newEntry = await db.query(insertQuery);
       if (!newEntry) {
         return response.status(403).json({
@@ -92,11 +94,11 @@ export default class EntryController {
         message: 'entry successfully created',
         entry: {
           id: newEntry.rows[0].id,
-          userId: newEntry.rows[0].userId,
+          userId: newEntry.rows[0].user_id,
           title: newEntry.rows[0].title,
-          imageUrl: newEntry.rows[0].imageUrl,
-          entryNote: newEntry.rows[0].entryNote,
-          createdAt: newEntry.rows[0].createdAt,
+          imageUrl: newEntry.rows[0].image_url,
+          entryNote: newEntry.rows[0].entry_note,
+          createdAt: newEntry.rows[0].created_at,
         },
       });
     } catch (error) {
@@ -116,6 +118,7 @@ export default class EntryController {
    */
   static async updateEntry(request, response) {
     const { entryId } = request.params;
+    const userId = request.userId.id;
     const query = `SELECT * FROM entries WHERE id = ${entryId} AND user_id = ${userId}`;
     try {
       const result = await db.query(query);
@@ -126,9 +129,9 @@ export default class EntryController {
         });
       }
       const {
-        title, imageUrl, entryNote, updatedAt,
+        title, imageUrl, entryNote,
       } = request.body;
-      const updateQuery = `UPDATE entries SET title = ${title}, image = ${imageUrl}, entry_note = ${entryNote}, updated_at = ${updatedAt} WHERE entry_id = ${entryId} AND user_id = ${userId}`;
+      const updateQuery = `UPDATE entries SET title = '${title}', image_url = '${imageUrl}', entry_note = '${entryNote}' WHERE id = ${entryId} AND user_id = ${userId} RETURNING *`;
       const updatedEntry = await db.query(updateQuery);
       if (!updatedEntry) {
         return response.status(403).json({
@@ -149,20 +152,21 @@ export default class EntryController {
     }
   }
 
-  static async deleteEntry(request, response) {
+  static deleteEntry(request, response) {
+    const userId = request.userId.id;
     const { entryId } = request.params;
-    const query = `DELETE FROM entries WHERE entry_id = ${entryId} AND user_id = ${userId}`;
-    const { error, result } = await db.query(query);
-    if (error) {
-      return response.status(404).json({
-        status: 'fail',
-        message: 'entry was not found in the database',
+    const query = `DELETE FROM entries WHERE id = ${entryId} AND user_id = '${userId}'`;
+    try {
+      db.query(query);
+      return response.status(200).json({
+        status: 'success',
+        message: 'successfully deleted',
+      });
+    } catch (error) {
+      return response.status(500).json({
+        status: 'error',
+        message: error.stack,
       });
     }
-    return response.status(200).json({
-      status: 'success',
-      message: 'entry was successfully deleted',
-      result,
-    });
   }
 }
