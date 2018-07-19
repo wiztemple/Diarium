@@ -34,7 +34,7 @@
                         <div class="form-card">
                             <p>Please fill in your details</p>
                             <form id="signup">
-                                <div class="js__errormsg"></div>
+                                <span class="js__errormsg"></span>
                                 <div class="form-row">
                                     <label for="name">First Name:</label>
                                     <input type="text" class="form-control" name="firstname" placeholder="Enter your name" required>
@@ -51,9 +51,7 @@
                                     <label for="name">Password</label>
                                     <input type="password" class="form-control" name="password" required placeholder="Enter your name">
                                 </div>
-                                
                                     <button type="submit" class="btn account__btn btn-block">Register</button>
-                                
                             </form>
                         </div>
                         <p>Signed Up Already? Sign In <a href="signin.html">here</a></p>
@@ -126,7 +124,7 @@
     </section>
 </div>
 <script src="./assets/js/toggle.js"></script>
-<script src="./assets/js/signup.js"></script>
+<script src="./assets/js/index.js"></script>
 <script>
     window.onload = () => app.signup();
 </script>

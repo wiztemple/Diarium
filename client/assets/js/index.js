@@ -53,3 +53,30 @@ app.signup = () => {
     });
   });
 };
+
+app.login = () => {
+  const form = document.getElementById('signin');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formdata = app.getFormdata();
+    console.log(formdata);
+    app.auth('/api/v1/auth/login', formdata).then((data) => {
+      const errorMsg = document.querySelector('.js__errormsg');
+      if (data.status === 'fail') {
+        errorMsg.innerHTML = data.message;
+      }
+      if (data.status === 'success') {
+        console.log(data);
+        errorMsg.innerHTML = data.message;
+        app.saveToken(data.token);
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1000);
+      }
+
+      if (data.status === 'error') {
+        errorMsg.innerHTML = data.message;
+      }
+    });
+  });
+};

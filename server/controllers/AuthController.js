@@ -47,6 +47,7 @@ export default class AuthController {
     const insertQuery = `SELECT * FROM users WHERE email = '${email}'`;
     try {
       const result = await db.query(insertQuery);
+      console.log(result.rows[0]);
       const validPassword = bcrypt.compareSync(password, result.rows[0].password);
       if (!validPassword || result.rowCount === 0) {
         return response.status(404).json({
@@ -67,7 +68,7 @@ export default class AuthController {
     } catch (error) {
       return response.status(500).json({
         status: 'error',
-        message: error.message,
+        message: error.stack,
       });
     }
   }

@@ -65,17 +65,10 @@ export default class Validate {
   }
 
   static validEntryInput(request, response, next) {
-    const id = request.params;
-    console.log(id);
     const {
       title, imageUrl, entryNote,
     } = request.body;
-    if (!id || id === undefined || id !== Number || id === 0) {
-      return response.status(400).json({
-        status: 'fail',
-        message: 'invalid id',
-      });
-    }
+
     if (
       !title || title === undefined || title.trim() === '' || typeof title !== 'string'
     ) {

@@ -1,4 +1,3 @@
-
 const app = {};
 
 app.saveToken = token => localStorage.setItem('token', token);
@@ -40,12 +39,12 @@ app.signup = () => {
         errorMsg.innerHTML = data.message;
       }
       if (data.status === 'success') {
-          console.log(data)
+        console.log(data);
         errorMsg.innerHTML = data.message;
         app.saveToken(data.token);
-        /* setTimeout(() => {
+        setTimeout(() => {
           window.location.href = 'dashboard.html';
-        }, 1000); */
+        }, 1000);
       }
 
       if (data.status === 'error') {
