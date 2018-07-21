@@ -6,9 +6,10 @@ import Validate from '../middlewares/validation';
 const entryRoute = Router();
 
 // get all entries
-entryRoute.get('/', verifyToken, Validate.validEntryInput, EntryController.getAllEntries);
+entryRoute.get('/', verifyToken, EntryController.getAllEntries);
+
 // get a single entry
-entryRoute.get('/:entryId', verifyToken, Validate.validEntryInput, EntryController.getSingleEntry);
+entryRoute.get('/:entryId', verifyToken, EntryController.getSingleEntry);
 
 // create entry
 entryRoute.post('/', verifyToken, Validate.validEntryInput, EntryController.createEntry);
@@ -17,6 +18,6 @@ entryRoute.post('/', verifyToken, Validate.validEntryInput, EntryController.crea
 entryRoute.put('/:entryId', verifyToken, Validate.validEntryInput, EntryController.updateEntry);
 
 // delete an entry
-entryRoute.delete('/:entryId', verifyToken, Validate.validEntryInput, EntryController.deleteEntry);
+entryRoute.delete('/:entryId', verifyToken, EntryController.deleteEntry);
 
 export default entryRoute;

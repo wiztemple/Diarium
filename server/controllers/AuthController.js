@@ -7,8 +7,8 @@ export default class AuthController {
     const {
       firstname, lastname, email, password,
     } = request.body;
-    console.log(request.headers);
     const hashedPassword = bcrypt.hashSync(password, 10);
+
     try {
       const userQuery = `SELECT * FROM users WHERE email = '${email}'`;
       const checkIfUserExists = await db.query(userQuery);
@@ -47,7 +47,7 @@ export default class AuthController {
     const insertQuery = `SELECT * FROM users WHERE email = '${email}'`;
     try {
       const result = await db.query(insertQuery);
-      console.log(result.rows[0]);
+
       const validPassword = bcrypt.compareSync(password, result.rows[0].password);
       if (!validPassword || result.rowCount === 0) {
         return response.status(404).json({
