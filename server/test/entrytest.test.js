@@ -1,20 +1,47 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
+import db from '../dbconnection/dbconnect';
 
 
 chai.use(chaiHttp);
 chai.should();
-const userToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzdWxsaXZhbkBnbWFpbC5jb20iLCJpYXQiOjE1MzIwNDExMjAsImV4cCI6MTUzMjEyNzUyMH0.PhUvfV777ZnJSmAMdc8-YVBrQhQYAHhUWp_q003K8g0';
+let userToken;
 const title = Math.random().toString(36).substring(2, 15);
 
 describe('Diary Entry', () => {
+  before((done) => {
+    // create a new user to get fresh token
+    const user = {
+      firstname: 'Amaka',
+      lastname: 'Eze',
+      email: 'amake@eze.com',
+      password: 'lastdays',
+    };
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(user)
+      .end((error, response) => {
+        userToken = `Bearer ${response.body.token}`;
+        done();
+      });
+  });
+
+  after((done) => {
+    // clean db
+    db.query('DELETE FROM users; DELETE FROM entries;', () => {
+      done();
+    });
+  });
+
   describe('Get entries', () => {
     it('should return all entries', (done) => {
       chai.request(app)
         .get('/api/v1/users/entries')
         .set('Authorization', userToken)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(200);
           response.should.be.an('object');
           response.body.should.have.property('message').to.equal('all entries successfully returned');
@@ -29,6 +56,8 @@ describe('Diary Entry', () => {
         .get(`/api/v1/users/entries/${id}`)
         .set('Authorization', userToken)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(200);
           response.body.should.be.an('object');
           done();
@@ -41,6 +70,8 @@ describe('Diary Entry', () => {
         .get(`/api/v1/users/entries/${id}`)
         .set('Authorization', userToken)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(400);
           done();
         });
@@ -53,6 +84,8 @@ describe('Diary Entry', () => {
         .get(`/api/v1/users/entries/${id}`)
         .set('Authorization', userToken)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(400);
           done();
         });
@@ -72,6 +105,8 @@ describe('Diary Entry', () => {
         .set('Authorization', userToken)
         .send(data)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(201);
           response.body.should.be.an('object');
           response.body.should.have.property('message').to.equals('entry successfully created');
@@ -89,6 +124,8 @@ describe('Diary Entry', () => {
         .set('Authorization', userToken)
         .send(data)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(400);
           response.body.should.have.property('message').to.equals('entry title cannot be empty');
           done();
@@ -105,6 +142,8 @@ describe('Diary Entry', () => {
         .set('Authorization', userToken)
         .send(data)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(400);
           response.body.should.have.property('message').to.equals('entry note cannot be empty');
           done();
@@ -125,6 +164,8 @@ describe('Diary Entry', () => {
         .set('Authorization', userToken)
         .send(data)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(200);
           response.body.should.have.property('message').to.equals('entry successfully updated');
           done();
@@ -144,6 +185,8 @@ describe('Diary Entry', () => {
         .set('Authorization', userToken)
         .send(data)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(400);
           done();
         });
@@ -162,6 +205,8 @@ describe('Diary Entry', () => {
         .set('Authorization', userToken)
         .send(data)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(404);
           done();
         });
@@ -174,6 +219,8 @@ describe('Diary Entry', () => {
         .delete(`/api/v1/users/entries/${id}`)
         .set('Authorization', userToken)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(200);
           done();
         });
@@ -185,6 +232,8 @@ describe('Diary Entry', () => {
         .delete(`/api/v1/users/entries/${id}`)
         .set('Authorization', userToken)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(400);
           response.body.should.have.property('message').to.equals('invalid id');
           done();
@@ -197,6 +246,8 @@ describe('Diary Entry', () => {
         .delete(`/api/v1/users/entries/${id}`)
         .set('Authorization', userToken)
         .end((error, response) => {
+          console.log(response.body);
+
           response.should.have.status(400);
           response.body.should.have.property('message').to.equals('invalid id');
           done();

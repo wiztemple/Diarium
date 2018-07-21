@@ -1,17 +1,23 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
+import db from '../dbconnection/dbconnect';
 
 chai.use(chaiHttp);
 chai.should();
-const email = Math.random().toString(36).substring(2, 15);
 describe('Authentication', () => {
+  after((done) => {
+    // clean db
+    db.query('DELETE FROM users;', () => {
+      done();
+    });
+  });
   describe('Create user account', () => {
     it('should create user account with valid inputs', (done) => {
       const user = {
         firstname: 'Edwin',
         lastname: 'Ukaegbu',
-        email: `${email}@gmail.com`,
+        email: 'edwin@gmail.com',
         password: 'lastdays',
       };
       chai.request(app)
@@ -25,9 +31,9 @@ describe('Authentication', () => {
     });
     it('should not create account for an already existing user', (done) => {
       const user = {
-        firstname: 'Chinyere',
+        firstname: 'Edwin',
         lastname: 'Ukaegbu',
-        email: 'obi@gmail.com',
+        email: 'edwin@gmail.com',
         password: 'lastdays',
       };
       chai.request(app)
@@ -140,7 +146,7 @@ describe('Authentication', () => {
   describe('User Login', () => {
     it('should login a registered user', (done) => {
       const user = {
-        email: 'obi@gmail.com',
+        email: 'edwin@gmail.com',
         password: 'lastdays',
       };
       chai.request(app)
@@ -154,7 +160,7 @@ describe('Authentication', () => {
     });
     it('should not login a user with incorrect password', (done) => {
       const user = {
-        email: 'obi@gmail.com',
+        email: 'edwin@gmail.com',
         password: 'lastdays00',
       };
       chai.request(app)
