@@ -30,8 +30,6 @@ Diarium is an online journal where users can pen down their thoughts and feeling
 6. Create Postgresql database, Navigate to server directory and run migrations:
 ```
 cd server
-npm run migrations 
-npm run seeders
 ```
 7. Create a `.env` file in the root directory of the application. Use a different database for your testing and development. Example of the content of a .env file is shown in the .env.sample
 

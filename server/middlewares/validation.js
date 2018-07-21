@@ -1,10 +1,17 @@
 export default class Validate {
   static validateUserInputs(request, response, next) {
+    const id = request.params;
     const {
       firstname, lastname, email, password,
     } = request.body;
     const nameFormat = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
     const emailPattern = /[^\s]*@[a-z0-9.-]*/i;
+    if (isNaN(id) || id === Number) {
+      return response.status(400).json({
+        status: 'fail',
+        message: 'id must be a number',
+      });
+    }
     if (
       !firstname || firstname === undefined || firstname.toString().trim() === '' || typeof firstname !== 'string'
     ) {
