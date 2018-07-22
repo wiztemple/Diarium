@@ -1,17 +1,10 @@
 export default class Validate {
   static validateUserInputs(request, response, next) {
-    const id = request.params;
     const {
       firstname, lastname, email, password,
     } = request.body;
     const nameFormat = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
     const emailPattern = /[^\s]*@[a-z0-9.-]*/i;
-    if (isNaN(id) || id === Number) {
-      return response.status(400).json({
-        status: 'fail',
-        message: 'id must be a number',
-      });
-    }
     if (
       !firstname || firstname === undefined || firstname.toString().trim() === '' || typeof firstname !== 'string'
     ) {
@@ -27,7 +20,7 @@ export default class Validate {
       });
     }
     if (
-      !lastname || lastname === undefined || lastname.toString().trim() === '' || typeof lastname !== 'string'
+      !lastname || lastname === undefined || lastname.toString().trim() === '' || (typeof lastname !== 'string')
     ) {
       return response.status(400).send({
         valid: false,
@@ -85,7 +78,7 @@ export default class Validate {
       });
     }
     if (
-      typeof imageUrl !== 'string'
+      (typeof imageUrl !== 'string')
     ) {
       return response.status(400).send({
         valid: false,
@@ -96,11 +89,21 @@ export default class Validate {
       !entryNote || entryNote === undefined || entryNote.toString().trim() === '' || typeof entryNote !== 'string'
     ) {
       return response.status(400).send({
-        valid: false,
+        status: 'fail',
         message: 'entry note cannot be empty',
       });
     }
+    return next();
+  }
 
+  static checkId(request, response, next) {
+    const { id } = request.params;
+    if (Number.isNaN(id)) {
+      return response.status(400).json({
+        status: 'fail',
+        message: 'id must be a number',
+      });
+    }
     return next();
   }
 }

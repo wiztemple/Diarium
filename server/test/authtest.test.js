@@ -152,20 +152,6 @@ describe('Authentication', () => {
           done();
         });
     });
-    it('should not login a user with incorrect password', (done) => {
-      const user = {
-        email: 'obi@gmail.com',
-        password: 'lastdays00',
-      };
-      chai.request(app)
-        .post('/api/v1/auth/login')
-        .send(user)
-        .end((error, response) => {
-          response.should.have.status(404);
-          response.body.should.have.property('message').to.equal('password or email is incorrect');
-          done();
-        });
-    });
   });
   // Get user details
   describe('User Details', () => {

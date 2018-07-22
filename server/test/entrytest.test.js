@@ -5,7 +5,7 @@ import app from '../../app';
 
 chai.use(chaiHttp);
 chai.should();
-const userToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzdWxsaXZhbkBnbWFpbC5jb20iLCJpYXQiOjE1MzIwNDExMjAsImV4cCI6MTUzMjEyNzUyMH0.PhUvfV777ZnJSmAMdc8-YVBrQhQYAHhUWp_q003K8g0';
+const userToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJvYmlAZ21haWwuY29tIiwiaWF0IjoxNTMyMjY2Mzk1LCJleHAiOjE1MzIzNTI3OTV9.HipbNp5NyfF7Expk0L9It_VQ0oZQj0FxJew3g2aTNyA';
 const title = Math.random().toString(36).substring(2, 15);
 
 describe('Diary Entry', () => {

@@ -6,10 +6,11 @@
   "scripts": {
     "test": "nyc mocha --require babel-register --timeout 6000 ./server/test/*.js --exit",
     "lint": "eslint --init --fix",
+    "drop-table": "babel-node ./server/migrations/drop/users.table.js && babel-node ./server/migrations/drop/entries.table.js",
+    "create-table": "babel-node ./server/migrations/create/users.table.js && babel-node ./server/migrations/create/entries.table.js",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./app.js",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "createTables": "psql -U postgres -d diary -f ./server/dbconnection/table.sql"
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",

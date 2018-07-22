@@ -4,19 +4,19 @@ import verifyToken from '../helpers/verifyToken';
 import Validate from '../middlewares/validation';
 
 const entryRoute = Router();
-
+entryRoute.use(verifyToken);
 // get all entries
-entryRoute.get('/', verifyToken, Validate.validEntryInput, EntryController.getAllEntries);
+entryRoute.get('/', EntryController.getAllEntries);
 // get a single entry
-entryRoute.get('/:entryId', verifyToken, Validate.validEntryInput, EntryController.getSingleEntry);
+entryRoute.get('/:entryId', Validate.checkId, EntryController.getSingleEntry);
 
 // create entry
-entryRoute.post('/', verifyToken, Validate.validEntryInput, EntryController.createEntry);
+entryRoute.post('/', Validate.validEntryInput, EntryController.createEntry);
 
 // edit entry
-entryRoute.put('/:entryId', verifyToken, Validate.validEntryInput, EntryController.updateEntry);
+entryRoute.put('/:entryId', Validate.checkId, Validate.validEntryInput, EntryController.updateEntry);
 
 // delete an entry
-entryRoute.delete('/:entryId', verifyToken, Validate.validEntryInput, EntryController.deleteEntry);
+entryRoute.delete('/:entryId', Validate.checkId, EntryController.deleteEntry);
 
 export default entryRoute;
