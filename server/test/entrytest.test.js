@@ -5,7 +5,7 @@ import app from '../../app';
 
 chai.use(chaiHttp);
 chai.should();
-const userToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJvYmlAZ21haWwuY29tIiwiaWF0IjoxNTMyMjY2Mzk1LCJleHAiOjE1MzIzNTI3OTV9.HipbNp5NyfF7Expk0L9It_VQ0oZQj0FxJew3g2aTNyA';
+const userToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJvYmlAZ21haWwuY29tIiwiaWF0IjoxNTMyMzI4MDM5LCJleHAiOjE1MzI0MTQ0Mzl9.o5Gvwr8ez5OFLjKE_I6xZPaKXB2EGdlfC_sMIqQERrs';
 const title = Math.random().toString(36).substring(2, 15);
 
 describe('Diary Entry', () => {
@@ -133,7 +133,7 @@ describe('Diary Entry', () => {
 
     // Test update request (return 400)
     it('should not update entry if required fields are empty', (done) => {
-      const id = 1;
+      const id = 4;
       const data = {
         title: '',
         imageUrl: 'https://pixabay.com/en/female-diary-journal-write-865110/love',

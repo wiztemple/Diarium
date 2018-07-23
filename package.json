@@ -4,7 +4,7 @@
   "description": "Diarium is an online journal where users can pen down their thoughts and feelings.",
   "main": "app.js",
   "scripts": {
-    "test": "nyc mocha --require babel-register --timeout 6000 ./server/test/*.js --exit",
+    "test": "NODE_ENV=test nyc mocha --require babel-register --timeout 6000 ./server/test/*.js --exit",
     "lint": "eslint --init --fix",
     "drop-table": "babel-node ./server/migrations/drop/users.table.js && babel-node ./server/migrations/drop/entries.table.js",
     "create-table": "babel-node ./server/migrations/create/users.table.js && babel-node ./server/migrations/create/entries.table.js",
