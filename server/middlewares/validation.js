@@ -97,11 +97,18 @@ export default class Validate {
   }
 
   static checkId(request, response, next) {
-    const { id } = request.params;
-    if (Number.isNaN(id)) {
+    const { entryId } = request.params;
+    console.log(typeof parseInt(entryId, 10) !== 'number');
+    if (typeof parseInt(entryId, 10) !== 'number') {
       return response.status(400).json({
         status: 'fail',
         message: 'id must be a number',
+      });
+    }
+    if (!entryId || entryId === undefined) {
+      return response.status(400).json({
+        status: 'fail',
+        message: 'id not found',
       });
     }
     return next();

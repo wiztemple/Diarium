@@ -1,4 +1,5 @@
-import db from '../dbconnection/dbconnect';
+import db from '../config/dbconnect';
+import parsedInt from '../helpers/parseInt';
 
 export default class EntryController {
   /**
@@ -39,7 +40,9 @@ export default class EntryController {
   static async getSingleEntry(request, response) {
     const userId = request.userId.id;
     const { entryId } = request.params;
-    const query = `SELECT * FROM entries WHERE id = ${entryId} AND user_id = ${userId}`;
+    console.log('okay nh', entryId);
+    const parsedId = parsedInt(entryId);
+    const query = `SELECT * FROM entries WHERE id = ${parsedId} AND user_id = ${userId}`;
     try {
       const data = await db.query(query);
       if (!data) {
@@ -119,7 +122,8 @@ export default class EntryController {
   static async updateEntry(request, response) {
     const { entryId } = request.params;
     const userId = request.userId.id;
-    const query = `SELECT * FROM entries WHERE id = ${entryId} AND user_id = ${userId}`;
+    const parsedId = parsedInt(entryId);
+    const query = `SELECT * FROM entries WHERE id = ${parsedId} AND user_id = ${userId}`;
     try {
       const result = await db.query(query);
       if (result.rowCount === 0) {
@@ -155,7 +159,8 @@ export default class EntryController {
   static deleteEntry(request, response) {
     const userId = request.userId.id;
     const { entryId } = request.params;
-    const query = `DELETE FROM entries WHERE id = ${entryId} AND user_id = '${userId}'`;
+    const parsedId = parsedInt(entryId);
+    const query = `DELETE FROM entries WHERE id = ${parsedId} AND user_id = '${userId}'`;
     try {
       db.query(query);
       return response.status(200).json({

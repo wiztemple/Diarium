@@ -1,10 +1,15 @@
 import { Pool } from 'pg';
-import config from '../config/config';
+import config from './config';
 
-// const db = new Pool(config.dev);
-const db = (process.env.NODE_ENV === 'test') ? new Pool(config.test) : new Pool(config.dev);
-// console.log(db);
 
+const env = process.env.NODE_ENV;
+let db;
+
+if (env === 'test') {
+  db = new Pool(config.test);
+} else {
+  db = new Pool(config.dev);
+}
 // connect pg
 db.connect().then(() => {
   // eslint-disable-next-line

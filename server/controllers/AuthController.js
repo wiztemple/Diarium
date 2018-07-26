@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import db from '../dbconnection/dbconnect';
+import db from '../config/dbconnect';
 
 export default class AuthController {
   static async signup(request, response) {

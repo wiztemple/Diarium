@@ -5,7 +5,7 @@ import app from '../../app';
 
 chai.use(chaiHttp);
 chai.should();
-const userToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJvYmlAZ21haWwuY29tIiwiaWF0IjoxNTMyMzI4MDM5LCJleHAiOjE1MzI0MTQ0Mzl9.o5Gvwr8ez5OFLjKE_I6xZPaKXB2EGdlfC_sMIqQERrs';
+const userToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJvYmlAZ21haWwuY29tIiwiaWF0IjoxNTMyNjM2MjAyLCJleHAiOjE1MzI3MjI2MDJ9.mt16o3b7ZF0N__Wj7CLR7EumLUm5Eop1Ef5_JoeHxyw';
 const title = Math.random().toString(36).substring(2, 15);
 
 describe('Diary Entry', () => {
@@ -24,7 +24,7 @@ describe('Diary Entry', () => {
 
     // Test GET single request (return 200)
     it('should get the entry when id exists', (done) => {
-      const id = 1;
+      const id = 2;
       chai.request(app)
         .get(`/api/v1/users/entries/${id}`)
         .set('Authorization', userToken)
@@ -36,7 +36,7 @@ describe('Diary Entry', () => {
     });
 
     it('should not get user entry if id does not exist', (done) => {
-      const id = 0;
+      const id = 57;
       chai.request(app)
         .get(`/api/v1/users/entries/${id}`)
         .set('Authorization', userToken)
